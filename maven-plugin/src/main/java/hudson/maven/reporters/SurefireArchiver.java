@@ -261,7 +261,8 @@ public class SurefireArchiver extends TestFailureDetector {
             && (!mojo.is("org.codehaus.mojo", "gwt-maven-plugin", "test"))
             && (!isAndroidMojo(mojo))
             && (!isSurefireOrFailsafeMojo(mojo))
-            && (!isSoapUiMojo(mojo)))
+            && (!isSoapUiMojo(mojo))
+            && (!mojo.mojoExecution.getExecutionId().endsWith("testWithReport")))
             return false;
 
         try {
