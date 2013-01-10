@@ -103,7 +103,12 @@ public class SurefireArchiver extends MavenReporter {
     }
 
     public boolean postExecute(MavenBuildProxy build, MavenProject pom, MojoInfo mojo, final BuildListener listener, Throwable error) throws InterruptedException, IOException {
-        if (!isSurefireTest(mojo)) return true;
+        if (!isSurefireTest(mojo)) {
+            listener.getLogger().println("Execution " + mojo.pluginName.toString() + " (" + mojo.mojoExecution.getExecutionId() + ") is not a test.");
+            return true;
+        } else {
+            listener.getLogger().println("Execution " + mojo.pluginName.toString() + " (" + mojo.mojoExecution.getExecutionId() + ") is not a test.");
+        }
 
         listener.getLogger().println(Messages.SurefireArchiver_Recording());
 
@@ -244,7 +249,8 @@ public class SurefireArchiver extends MavenReporter {
             && (!mojo.is("org.apache.maven.plugins", "maven-surefire-plugin", "test"))
             && (!mojo.is("org.apache.maven.plugins", "maven-failsafe-plugin", "integration-test"))
             && (!mojo.is("eviware", "maven-soapui-plugin", "test"))
-            && (!mojo.is("eviware", "maven-soapui-pro-plugin", "test")))
+            && (!mojo.is("eviware", "maven-soapui-pro-plugin", "test"))
+            && (!mojo.mojoExecution.getExecutionId().endsWith("testWithReport")))
             return false;
 
         try {
