@@ -34,7 +34,7 @@ THE SOFTWARE.
 
   <artifactId>maven-plugin</artifactId>
   <packaging>hpi</packaging>
-  <version>1.459.1-SNAPSHOT</version>
+  <version>1.459-SNAPSHOT</version>
   <name>Maven Integration plugin</name>
   <description>This plug-in provides deep integration of Jenkins and Maven. This functionality used to be part of the Jenkins core.
   Now it is a plug-in that is installed by default, but can be disabled.</description>
